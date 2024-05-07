@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&family=Jost:wght@500&family=Nunito:wght@500&family=Prompt:wght@500&family=Roboto+Slab:wght@700&family=Sofia+Sans:wght@500&display=swap" rel="stylesheet">
+    <title>Countdown Timer</title><style>* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    
+        font-family: 'Dosis', sans-serif;
+        font-family: 'Jost', sans-serif;
+        font-family: 'Nunito', sans-serif;
+        font-family: 'Prompt', sans-serif;
+        font-family: 'Roboto Slab', serif;
+        font-family: 'Sofia Sans', sans-serif;
+    
+    
+        color: rgb(17, 16, 16);
+    }
+    body{
+        height: 100vh;
+        background-image: url("https://images.pexels.com/photos/1580085/pexels-photo-1580085.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+        background-position: center center;
+        background-size: cover;
+    
+        background-repeat: no-repeat;
+    }
+    h1 {
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        font-family: sans-serif;
+        background: none;
+    }
+    
+    .tit {
+    
+        justify-self: center;
+        width: 100vw;
+        margin-top: 8rem;
+        background: none;
+    
+    }
+    
+    #container {
+    
+        display: flex;
+        flex-direction: column;
+        background: none;
+        height: 50vh;
+    
+    }
+    
+    .top {
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        align-items: center;
+        margin-top: 2rem;
+        background: none;
+    }
+    
+    .bottom {
+        display: flex;
+        justify-content: center;
+        height: 1vh;
+        align-items: flex-start;
+        background: none;
+        background: none;
+    }
+    
+    /*label*/
+    .label {
+        /* margin: 1rem; */
+        opacity: .5;
+        justify-self: center;
+        align-self: center;
+        font-size: 30px;
+        background: none;
+    }
+    
+    
+    
+    /*times*/
+    .time {
+        justify-self: end;
+        margin-left: 1.5rem;
+        align-self: flex-end;
+        opacity: .8;
+        /* text-align: center; */
+        border: none;
+        background-color: #ffffff00;
+        font-size: 50px;
+        width: 70px;
+        background: none;
+        height: 50px;
+    }
+    
+    
+    
+    
+    
+    /*buttons*/
+    
+    .btn {
+        align-self: center;
+        margin: 1rem;
+        border-radius: .3rem;
+        border: .1px solid gray;
+        width: 100px;
+        height: 40px;
+    
+        font-size: 30px;
+        justify-self: center;
+    }
+    
+    
+    
+    .h,
+    .m,
+    .s {
+    
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+    
+    .h:hover,
+    .m:hover,
+    .s:hover {
+        background-color: rgb(233, 231, 229);
+    }
+    
+    .bottom button:hover {
+        color: rgb(62, 148, 72);
+        cursor: pointer;
+    }</style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="tit"><h1>COUNTDOWN TO DIWALI</h1></div>
+        <div class="top">
+            <div class="d">
+                <input id="day" type="number" max="99" min="0" value="0" class="time">
+                <p id="day-label" class="label">Days</p>
+            </div>
+            <div class="h">
+                <input id="hour" type="number" max="99" min="0" value="0" class="time">
+                <p id="hour-label" class="label">Hours</p>
+            </div>
+            <div class="m">
+                <input id="minute" type="number" max="60" min="0" value="0" class="time">
+                <p id="min-label" class="label">Minutes</p>
+            </div>
+            <div class="s">
+                <input id="sec" type="number" max="60" min="0" value="0" class="time">
+                <p id="sec-label" class="label">Seconds</p>
+            </div>
+        </div>
+    </div>
+    
+      </div>
+    <pre>
+
+
+
+
+
+
+    <div class="bottom">
+        <button id="start" class="btn">Start</button>
+        <button id="reset" class="btn">Reset</button>
+    </div></pre>
+      
+    <script data-two_delay_id="two_6509e40296abd" data-two_delay_src="main.js">
+        var start = document.getElementById('start');
+        var reset = document.getElementById('reset');
+        
+        var h = document.getElementById("hour");
+        var m = document.getElementById("minute");
+        var s = document.getElementById("sec");
+        
+        //store a reference to the startTimer variable
+        var startTimer = null;
+        
+        start.addEventListener('click', function(){
+            //initialize the variable
+            function startInterval(){
+                startTimer = setInterval(function() {
+                    timer();
+                }, 1000);
+            }
+            startInterval();
+        })
+        
+        reset.addEventListener('click', function(){
+            h.value = 0;
+            m.value = 0;
+            s.value = 0;
+            //stop the timer after pressing "reset"
+            stopInterval()
+        })
+        
+        function timer(){
+            if(h.value == 0 && m.value == 0 && s.value == 0){
+                h.value = 0;
+                m.value = 0;
+                s.value = 0;
+            } else if(s.value != 0){
+                s.value--;
+            } else if(m.value != 0 && s.value == 0){
+                s.value = 59;
+                m.value--;
+            } else if(h.value != 0 && m.value == 0){
+                m.value = 60;
+                h.value--;
+            }
+            return;
+        }
+        
+        //stop the function after pressing the reset button,
+        //so the time wont go down when selecting a new time after pressing reset
+        function stopInterval() {
+            clearInterval(startTimer);
+        }</script>
+
+</body>
+</html>
